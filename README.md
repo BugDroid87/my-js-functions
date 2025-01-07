@@ -1,7 +1,7 @@
 # my-js-functions
 A collection of useful JavaScript functions that I have written for my personal blog.
 
-Available for use directly on my website.
+Available for use directly on my website: https://bug87droid.blogspot.com/2025/01/csv-numbering.html
 
 MakeNumbersCSV.js is a simple, efficient JavaScript tool designed to generate CSV files for numbering printed items such as raffle tickets, invoices, and lots. It eliminates the need for spreadsheets by creating a CSV directly from a script, making the process faster and more flexible.
 
