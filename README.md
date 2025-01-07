@@ -1,11 +1,14 @@
 # my-js-functions
 A collection of useful JavaScript functions that I have written for my personal blog.
 
-Available for use directly on my website: https://bug87droid.blogspot.com/2025/01/csv-numbering.html
+THE SOFTWARE IS PROVIDED "AS IS," WITHOUT ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. WE DO NOT GUARANTEE THAT THE SOFTWARE WILL ALWAYS BE AVAILABLE OR FREE FROM ERRORS. WE RESERVE THE RIGHT TO MODIFY, SUSPEND, OR DISCONTINUE THE SOFTWARE AT ANY TIME, WITHOUT NOTICE. THE SOFTWARE IS INTENDED FOR PERSONAL USE ONLY. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, CONSEQUENTIAL OR INCIDENTAL DAMAGES OF ANY KIND, WHETHER IN CONTRACT, NEGLIGENCE OR OTHER TORT, ARISING OUT OF OR IN CONNECTION WITH THE INFORMATION, SOFTWARE, OR THE SERVICES PROVIDED BY THIS REPOSITORY.
 
-MakeNumbersCSV.js is a simple, efficient JavaScript tool designed to generate CSV files for numbering printed items such as raffle tickets, invoices, and lots. It eliminates the need for spreadsheets by creating a CSV directly from a script, making the process faster and more flexible.
+----------------------------------------------------------------------------------
 
-This tool is particularly useful for integration with the Data Merge/Variable Print function in graphical software like Adobe InDesign. Whether you're working on a design project or preparing documents for print, MakeNumbersCSV.js helps automate the numbering of items for mass printing without complex setup or reliance on external software.
+For instructions, and example go on my website: https://droide87.blogspot.com/2025/01/csv-numbering-tool-for-printing-items.html
+
+MakeNumbersCSV.js contains a simple and efficient JavaScript function designed to generate CSV files for numbering printed items, such as raffle tickets. It eliminates the need for spreadsheets by directly creating a CSV file from the script, making the process faster and more flexible.
+This is particularly useful for integration with the Data Merge/Variable Print function in graphical software like Adobe InDesign.
 
 Features:
 - Automatically generates sequential numbers for printing.
@@ -17,3 +20,5 @@ How to Use:
 - Include the MakeNumbersCSV.js file in your project.
 - Configure the script to set your desired number range and file output.
 - Use the generated CSV in InDesign's Data Merge/Variable Print feature.
+
+----------------------------------------------------------------------------------
