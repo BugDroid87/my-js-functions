@@ -32,11 +32,11 @@ function MakeNumbersCSV(ItemsQuantity, ItemsPerSheet, StartNumber, ItemsPerBlock
 		return;
 	}
 	if (!Number.isInteger(StartNumber) || StartNumber < 1 || StartNumber > 100000) {
-		alert("Error: 'Start Number' must be an integer between 1 and 100,000.");
+		alert("Error: 'Start Number' must be an integer between 1 and 100000.");
 		return;
 	}
 	if (!Number.isInteger(ItemsPerBlocks) || ItemsPerBlocks < 1 || ItemsPerBlocks > 10000) {
-		alert("Error: 'Items Per Block' must be an integer between 1 and 10,000.");
+		alert("Error: 'Items Per Block' must be an integer between 1 and 10000.");
 		return;
 	}
 	if (typeof UsePlaceHolders !== "boolean") {
