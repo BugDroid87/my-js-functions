@@ -5,7 +5,7 @@ THE SOFTWARE IS PROVIDED "AS IS," WITHOUT ANY WARRANTY OF MERCHANTABILITY OR FIT
 
 ----------------------------------------------------------------------------------
 
-For instructions, and example go to my website: https://droide87.blogspot.com/2025/01/csv-numbering-tool-for-printing-items.html
+For instructions, and example go to my website: https://droide87.blogspot.com/2025/01/csv-numbering-tool.html
 
 MakeNumbersCSV.js contains a simple and efficient JavaScript function designed to generate CSV files for numbering printed items, such as raffle tickets. It eliminates the need for spreadsheets by directly creating a CSV file from the script, making the process faster and more flexible.
 This is particularly useful for integrating the Data Merge/Variable Print function in graphical software like Adobe InDesign.
