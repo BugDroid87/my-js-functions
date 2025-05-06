@@ -1,8 +1,9 @@
 /**
  * generateEAN13
  * -------------
- * Generates a symbolic representation of an EAN-13 barcode using character sets.
+ * Generates an alphanumeric string compatible with the `EAN13.TTF` font by GrandZebu.net.  
  * Inspired by: https://grandzebu.net/informatique/codbar-en/ean13.htm
+ * Try it out on my website: https://bugdroidtech.blogspot.com/2025/01/ean13-ttf-bulk-encoder.html
  *
  * @param {string} input - A string containing 12 or 13 digits.
  *                         If 13 digits are provided, the last is ignored and recalculated.
