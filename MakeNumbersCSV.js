@@ -68,7 +68,7 @@ function MakeNumbersCSV(ItemsQuantity, ItemsPerSheet, StartNumber, ItemsPerBlock
 	Message += "\r\nSheets to print: " + SheetsToPrint;
 	// Add the number of blocks if ItemsPerBlocks > 1
     if (ItemsPerBlocks > 1) {
-        let Blocks = SheetsToPrint / ItemsPerBlocks;
+        let Blocks = FinalQuantity / ItemsPerBlocks;
         Message += " \r\nNumber of blocks: " + Math.ceil(Blocks); // Using Math.ceil to round up
     }
 
