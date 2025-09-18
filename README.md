@@ -25,7 +25,7 @@ https://grandzebu.net/informatique/codbar-en/ean13.htm
 You can try it out directly on my website: https://bugdroidtech.blogspot.com/2025/01/ean13-ttf-bulk-encoder.html
 
 ----------------------------------------------------------------------------------
-A small JavaScript utility that generates FFmpeg commands for creating audio tones with different waveforms (sine, square, triangle, sawtooth).
+generateFFmpegAudioTone.js is a small JavaScript function that generates FFmpeg commands for creating audio tones with different waveforms (sine, square, triangle, sawtooth).
 It validates all parameters and outputs a ready-to-run ffmpeg command.
 
 Features:
