@@ -14,7 +14,7 @@
  */
 function generateFFmpegAudioTone(wave, freq, duration, duty, amplitude, sampleRate, outputFile) {
   // --- Input validation ---
-  if (!wave) return "Error: select a waveform type";
+  if (!wave) return "Error: missing waveform type";
 
   if (isNaN(freq) || freq < 20 || freq > 20000)
     return "Error: frequency must be between 20 and 20000 Hz";
