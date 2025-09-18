@@ -23,3 +23,19 @@ It follows the official EAN-13 structure and encoding rules, as described by Gra
 https://grandzebu.net/informatique/codbar-en/ean13.htm
 
 You can try it out directly on my website: https://bugdroidtech.blogspot.com/2025/01/ean13-ttf-bulk-encoder.html
+
+----------------------------------------------------------------------------------
+A small JavaScript utility that generates FFmpeg commands for creating audio tones with different waveforms (sine, square, triangle, sawtooth).
+It validates all parameters and outputs a ready-to-run ffmpeg command.
+
+Features:
+- Supports sine, square, triangle, and sawtooth waves
+- Frequency range: 20–20000 Hz
+- Sampling rate: 8000–192000 Hz
+- Configurable amplitude (0.05–1.0)
+- Square waves support duty cycle (1–99%)
+- Outputs valid FFmpeg command for .wav, .mp3, .flac, etc.
+
+ You can try it out directly on my website: https://bugdroidtech.blogspot.com/2025/09/ffmpeg-generate-audio.html
+
+
