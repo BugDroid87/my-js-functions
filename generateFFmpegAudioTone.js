@@ -1,19 +1,17 @@
 /**
- * Generate an FFmpeg command for creating audio tones with different waveforms.
- *
- * Supported waveforms: sine, square, triangle, sawtooth.
- *
- * @param {string} wave - The waveform type ("sine", "square", "triangle", "sawtooth").
- * @param {number} freq - Frequency in Hz (20–20000).
- * @param {number} duration - Duration in seconds (> 0).
- * @param {number} duty - Duty cycle percentage (only for square wave, 1–99).
- * @param {number} amplitude - Amplitude factor (0.05–1.0).
- * @param {number} sampleRate - Sampling rate in Hz (8000–192000).
- * @param {string} outputFile - Output file name (e.g., "tone.wav" or "tone.mp3").
- * @returns {string} FFmpeg command string or an error message.
+ * Generates an FFmpeg terminal command to synthesize a mono audio tone with different waveforms.
+ * 
+ * @param {string} wave - The waveform type ('sine', 'square', 'triangle', 'sawtooth').
+ * @param {number} freq - The frequency in Hz (20 to 20000).
+ * @param {number} duration - The duration of the tone in seconds.
+ * @param {number} duty - The duty cycle percentage (1-99), used only for square waves.
+ * @param {number} amplitude - The volume/amplitude level (0.05 to 1.0).
+ * @param {number} sampleRate - The sample rate in Hz (e.g., 44100, 48000).
+ * @param {string} outputFile - The destination filename, ending in .wav or .flac.
+ * @returns {string} The formatted FFmpeg terminal command, or an error message if validation fails.
  */
 function generateFFmpegAudioTone(wave, freq, duration, duty, amplitude, sampleRate, outputFile) {
-  // --- Input validation ---
+  // --- Input Validation ---
   if (!wave) return "Error: missing waveform type";
 
   if (isNaN(freq) || freq < 20 || freq > 20000)
@@ -24,7 +22,7 @@ function generateFFmpegAudioTone(wave, freq, duration, duty, amplitude, sampleRa
 
   if (wave === 'square') {
     if (isNaN(duty) || duty < 1 || duty > 99)
-      return "Error: Duty Cycle must be between 1% and 99% for square wave";
+      return "Error: duty cycle must be between 1% and 99% for square wave";
   }
 
   if (isNaN(amplitude) || amplitude < 0.05 || amplitude > 1)
@@ -32,20 +30,35 @@ function generateFFmpegAudioTone(wave, freq, duration, duty, amplitude, sampleRa
 
   if (isNaN(sampleRate))
     return "Error: invalid sample rate";
+    
   if (sampleRate < 8000 || sampleRate > 192000)
     return "Error: sample rate must be between 8000 and 192000 Hz";
 
   if (!outputFile)
     return "Error: missing output file name";
 
-  // --- Constants and helper variables ---
-  const dutyRatio = duty / 100;           // Duty cycle as fraction (0.0–1.0)
-  const pi = '3.14159265';                // Use string form to embed into FFmpeg expression
-  const t = 't';                          // FFmpeg time variable
-  const period = 1 / freq;                // Period of one cycle (seconds)
-  const highPart = period * dutyRatio;    // Time duration of the "high" state for square wave
+  // --- Extension Validation ---
+  const validExtensions = ['.wav', '.flac'];
+  const dotIndex = outputFile.lastIndexOf('.');
+  
+  if (dotIndex === -1 || dotIndex === 0) {
+    return "Error: missing file extension in output filename (e.g., .wav, .flac)";
+  }
+  
+  const extension = outputFile.substring(dotIndex).toLowerCase();
+  if (!validExtensions.includes(extension)) {
+    return `Error: unsupported extension '${extension}'. Please use .wav or .flac`;
+  }
 
-  // --- Waveform expressions (FFmpeg aevalsrc) ---
+  // --- Constants and Helper Variables ---
+  const dutyRatio = duty / 100;           // Duty cycle as a fraction (0.01 - 0.99)
+  const pi = '3.14159265';                // String form to embed directly into the FFmpeg expression
+  const t = 't';                          // FFmpeg internal time variable
+  const period = 1 / freq;                // Period of one cycle (in seconds)
+  const highPart = period * dutyRatio;    // Time duration of the "high" state (used for square waves)
+
+  // --- Waveform Expressions (FFmpeg aevalsrc) ---
+  // These mathematical expressions instruct FFmpeg on how to draw the waveform curve.
   const waveExprs = {
     sine:     `sin(2*${pi}*${freq}*${t})*${amplitude}`,
     square:   `if(lt(mod(${t}\\,${period.toFixed(6)})\\,${highPart.toFixed(6)})\\,${amplitude}\\,-${amplitude})`,
@@ -53,6 +66,13 @@ function generateFFmpegAudioTone(wave, freq, duration, duty, amplitude, sampleRa
     sawtooth: `(2*mod(${freq}*${t}\\,1)-1)*${amplitude}`
   };
 
-  // --- Build FFmpeg command ---
-  return `ffmpeg -f lavfi -i "aevalsrc=${waveExprs[wave]}:s=${sampleRate}:d=${duration}" -c:a pcm_s16le ${outputFile}`;
+  // --- Dynamic Codec Configuration ---
+  // The 'aevalsrc' filter natively outputs 64-bit float audio. 
+  // If no 16-bit codec is specified for WAV, FFmpeg generates a 64-bit WAV file 
+  // which lacks compatibility with many standard audio players.
+  // We force 16-bit PCM for WAV files. FLAC automatically handles its own lossless encoding.
+  const codecConfig = (extension === ".wav") ? " -c:a pcm_s16le" : "";
+
+  // --- Build and Return FFmpeg Command ---
+  return `ffmpeg -f lavfi -i "aevalsrc=${waveExprs[wave]}:s=${sampleRate}:d=${duration}"${codecConfig} ${outputFile}`;
 }
